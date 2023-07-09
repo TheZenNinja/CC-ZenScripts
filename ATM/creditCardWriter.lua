@@ -13,7 +13,9 @@ if diskDrive.isDiskPresent() then
     local file = fs.open(PIN_PATH, "w")
     file.write(data)
     file.close()
-    
+
+    diskDrive.setDiskLabel("Credit Card")
+
     print("Done")
     os.sleep(1)
     shell.run("clear")
