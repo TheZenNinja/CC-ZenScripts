@@ -44,7 +44,7 @@ elseif arg[1] == "list" then
         end
     end
 
-    print("Package\t\tVersion\\URL")
+    print("Package\t\tVersion\t\tURL")
 
     for pkg, data in pairs(packages) do
         print(pkg.."\t\t"..data[1].."\t\t"..data[2])
