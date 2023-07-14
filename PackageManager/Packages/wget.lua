@@ -24,7 +24,8 @@ end
 
 
 if arg[1] == "pakman" then
-    download("https://raw.githubusercontent.com/TheZenNinja/CC-ZenScripts/master/PackageManager/pakman.lua","rom/pakman.lua")
+    download("https://raw.githubusercontent.com/TheZenNinja/CC-ZenScripts/master/PackageManager/pakman.lua","/pakman.lua")
+    print("Installed 'pakman' package manager")
 else
     local url = arg[1]
     local fileName = "";
