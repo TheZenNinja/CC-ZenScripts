@@ -51,11 +51,8 @@ elseif arg[1] == "list" then
     end
     LoadPackages()
 
-    print("Package","Version","URL")
-
-
     for pkg, data in pairs(packages) do
-        print(pkg, data[1], data[2])
+        print("'"..pkg.."'\t\tV"..data[1].."\t\tA:"..data[2])
     end
 end
 
