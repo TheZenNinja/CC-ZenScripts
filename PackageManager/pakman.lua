@@ -1,7 +1,7 @@
 --Version 0.1
 
 --#region Constants
-local PACKAGE_PATH = "pakman_data/packages.txt"
+local PACKAGE_PATH = "pakman_data/packages.dat"
 --#endregion
 
 --#region Functions
@@ -14,7 +14,7 @@ if arg[1] == "help" then
 
 elseif arg[1] == "refresh" then
     print("Refreshing package manifest...")
-    shell.execute("wget", "https://raw.githubusercontent.com/TheZenNinja/CC-ZenScripts/master/PackageManager/Packages.txt", PACKAGE_PATH)
+    shell.execute("wget", "https://raw.githubusercontent.com/TheZenNinja/CC-ZenScripts/master/PackageManager/Packages.dat", PACKAGE_PATH)
     print("Done")
 
 elseif arg[1] == "list" then
