@@ -24,6 +24,9 @@ function CreateButton(xPos,yPos,width,height,label)
     monitor.setTextColor(oldFG)
     
 end
+function CreateButtonSimple(xPos,yPos,label)
+    CreateButton(xPos,yPos,#label+2,3,label)
+end
 function CreateButtonFromBottomRight(x,y,width,height,label)
     local sizeX, sizeY = monitor.getSize()
     local x2 = x
@@ -36,13 +39,15 @@ end
 while true do
     local event, side, x, y = os.pullEvent("monitor_touch")
 
-    monitor.setBackgroundColor(color.black)
+    CreateButtonSimple(2,10,"Hello")
+
+    monitor.setBackgroundColor(colors.black)
     monitor.clear()
     monitor.setCursorPos(1,1)
 
     monitor.write("X:"..x.."Y:"..y)
 
-    monitor.setBackgroundColor(color.white)
-    monitor.setCursorPos(x,y)
-    monitor.write(" ")
+    --monitor.setBackgroundColor(colors.white)
+    --monitor.setCursorPos(x,y)
+    --monitor.write(" ")
   end
