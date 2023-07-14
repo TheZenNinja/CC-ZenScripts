@@ -66,6 +66,8 @@ elseif arg[1] == "get" or arg[1] == "install" then
     local pkg = packages[pkgName]
     local url = pkg[3]
     shell.execute("wget", url)
+else 
+    print("Command'"..arg[1].."' not found")
 end
 
 --#endregion
