@@ -22,15 +22,20 @@ if #arg == 0 then
     return
 end
 
-local url = arg[1]
-local fileName = "";
 
-if #arg == 2 then
-    fileName = arg[2]
+if arg[1] == "pakman" then
+    download("https://raw.githubusercontent.com/TheZenNinja/CC-ZenScripts/master/PackageManager/pakman.lua","rom/pakman.lua")
 else
-    fileName = string.gsub(url, "^.*//", "") .. ".lua"
+    local url = arg[1]
+    local fileName = "";
+    
+    if #arg == 2 then
+        fileName = arg[2]
+    else
+        fileName = string.gsub(url, "^.*//", "") .. ".lua"
+    end
+    
+    print("Downloading '" .. url .. "' to '" .. fileName .. "'")
+    download(url, fileName)
+    print("Done")
 end
-
-print("Downloading '" .. url .. "' to '" .. fileName .. "'")
-download(url, fileName)
-print("Done")

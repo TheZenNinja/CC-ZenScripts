@@ -4,8 +4,13 @@
 local PACKAGE_PATH = "pakman_data/packages.dat"
 --#endregion
 
+--#region Variables
+local packages = {}
+--#endregion
+
 --#region Functions
 if #arg == 0 then
+    shell.execute("pakman", "help")
     print("'pakman' needs at least one parameter")
 end
 
@@ -15,6 +20,16 @@ if arg[1] == "help" then
 elseif arg[1] == "refresh" then
     print("Refreshing package manifest...")
     shell.execute("wget", "https://raw.githubusercontent.com/TheZenNinja/CC-ZenScripts/master/PackageManager/Packages.dat", PACKAGE_PATH)
+    
+    if not fs.exists("pakman_data") then
+        fs.makeDir("pakman_data")
+    end
+
+    local file = fs.open(PACKAGE_PATH, "r")
+    local data = file.readAll()
+    packages = textutils.unserialiseJSON(data)
+    file.close()
+    
     print("Done")
 
 elseif arg[1] == "list" then
@@ -29,17 +44,11 @@ elseif arg[1] == "list" then
         end
     end
 
-    local pkgs = fs.open(PACKAGE_PATH)
-    local skippedFirstLine = false
+    print("Package\t\tVersion\\URL")
 
-    for line in string.gmatch(pkgs, "\n") do
-        if not skippedFirstLine then
-            skippedFirstLine = true
-        else
-            print(line)
-        end
+    for pkg, data in pairs(packages) do
+        print(pkg.."\t\t"..data[1].."\t\t"..data[2])
     end
-    
 end
 
 --#endregion
