@@ -7,8 +7,17 @@ local PACKAGE_PATH = "pakman_data/packages.dat"
 --#region Variables
 local packages = {}
 --#endregion
-
+function LoadPackages()
+    local file = fs.open(PACKAGE_PATH, "r")
+    local data = file.readAll()
+    packages = textutils.unserialiseJSON(data)
+    file.close()
+end
 --#region Functions
+
+
+
+
 if #arg == 0 then
     shell.execute("pakman", "help")
     print("'pakman' needs at least one parameter")
@@ -25,10 +34,7 @@ elseif arg[1] == "refresh" then
         fs.makeDir("pakman_data")
     end
 
-    local file = fs.open(PACKAGE_PATH, "r")
-    local data = file.readAll()
-    packages = textutils.unserialiseJSON(data)
-    file.close()
+    LoadPackages();
     
     print("Done")
 
@@ -43,6 +49,7 @@ elseif arg[1] == "list" then
             return
         end
     end
+    LoadPackages()
 
     print("Package","Version","URL")
 
