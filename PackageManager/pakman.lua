@@ -54,6 +54,18 @@ elseif arg[1] == "list" then
     for pkg, data in pairs(packages) do
         print("'"..pkg.."'\t\tV"..data[1].."\t\tA:"..data[2])
     end
+elseif arg[1] == "get" or arg[1] == "install" then
+    LoadPackages()
+    local pkgName = arg[2]
+
+    if packages[pkgName] == nil then
+        print("No package found with name: `"..pkgName.."`")
+        return
+    end
+
+    local pkg = packages[pkgName]
+    local url = pkg[3]
+    shell.execute("wget", url)
 end
 
 --#endregion
